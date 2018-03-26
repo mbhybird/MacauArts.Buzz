@@ -1,0 +1,148 @@
+<com.buzz.layout.BidirSlidingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/exhibition"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="270dip"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:background="#00ccff"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="This is left menu"
+            android:textColor="#000000"
+            android:textSize="28sp" />
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+
+    <!--android:layout_width="270dip"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:background="#00ffcc"-->
+    <!--android:visibility="invisible" >-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:text="This is right menu"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="28sp" />-->
+    <!--</RelativeLayout>-->
+    <include layout="@layout/right_menu"></include>
+
+    <RelativeLayout
+        android:id="@+id/ex_context"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:background="@color/bg_color"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/exhibition_background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/li_height_200dp"
+            android:background="@drawable/macaudefault"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#50282828"
+                android:padding="@dimen/padding">
+
+                <com.buzz.fonts.FuturaTextView
+                    android:id="@+id/exhibition_title"
+                    android:layout_width="@dimen/li_height_300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ex_tx_margin_top"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white_color"
+                    android:textSize="@dimen/ex_tx_text_size"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/exhibition_btn_menu"
+                    android:layout_width="@dimen/menu_width"
+                    android:layout_height="@dimen/menu_height"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/icon_menu" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/foot_bar"
+            android:layout_below="@+id/exhibition_background"
+            android:gravity="center_horizontal">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.buzz.fonts.MinionTextView
+                    android:id="@+id/exhibition_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10dp"
+                    android:ems="30"
+                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="@string/main_about"
+                    android:textColor="@color/content_color"
+                    android:textSize="@dimen/content_text_size" />
+            </ScrollView>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/foot_bar"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/re_height_60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingTop="@dimen/re_padding_5dp">
+
+            <ProgressBar
+                android:id="@+id/exhibition_progress_bar"
+                style="@style/tallerBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="0"
+                android:max="100"
+                android:progress="0"
+                android:secondaryProgress="0" />
+
+
+            <ProgressBar
+                android:id="@+id/exhibition_progress_bar_init"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <Button
+                android:id="@+id/exhibition_btn_download"
+                android:layout_width="@dimen/menu_height"
+                android:layout_height="@dimen/menu_height"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="@dimen/padding_10dp"
+                android:background="@drawable/icon_download"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</com.buzz.layout.BidirSlidingLayout>

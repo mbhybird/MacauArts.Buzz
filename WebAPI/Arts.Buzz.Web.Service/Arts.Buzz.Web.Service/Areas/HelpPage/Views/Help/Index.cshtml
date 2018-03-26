@@ -1,0 +1,149 @@
+@using System.Web.Http
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using Arts.Buzz.Web.Service.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "ASP.NET Web API Help Page";
+
+    // Group APIs by controller
+    ILookup<string, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor.ControllerName);
+}
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Introduction</h2>
+            <p>
+                <div>API URL：</div>
+                <pre>
+                    http://macauarts.buzz:81
+                </pre>
+                <div>CRUD：</div>
+                <pre>
+                    API_GET_URL="{URL}/api/{table}/Get{table}/{id}";
+                    API_GET_ALL_URL="{URL}+/api/{table}/Get{table}s";
+                    API_POST_URL="{URL}/api/{table}/Post{table}";
+                    API_PUT_URL="{URL}/api/{table}/Put{table}/{id}";
+                    API_DELETE_URL="{URL}/api/{table}/Delete{table}/{id}";
+                </pre>
+                <div>EXAMPLE：</div>
+                <pre>
+                    GET http://macauarts.buzz:81/api/appuser/Getappuser/{id}	
+                    GET http://macauarts.buzz:81/api/appuser/Getappusers	
+                    POST http://macauarts.buzz:81/api/appuser/Postappuser	
+                    PUT http://macauarts.buzz:81/api/appuser/Putappuser/{id}	
+                    DELETE http://macauarts.buzz:81/api/appuser/Deleteappuser/{id}
+                </pre>
+                <div>ANDROID CODE：</div>
+                <pre style="font-size:13px;">
+                    public String getAPI() {
+                        String result = "";
+                        try {
+                            //创建一个HttpClient对象
+                            HttpClient httpclient = new DefaultHttpClient();
+                            //创建HttpGet对象
+                            HttpGet request = new HttpGet(API_GET_ALL_URL);
+                            //请求信息类型MIME每种响应类型的输出（普通文本、html 和 XML）。允许的响应类型应当匹配资源类中生成的 MIME 类型
+                            //资源类生成的 MIME 类型应当匹配一种可接受的 MIME 类型。如果生成的 MIME 类型和可接受的 MIME 类型不 匹配，那么将
+                            //生成 com.sun.jersey.api.client.UniformInterfaceException。例如，将可接受的 MIME 类型设置为 text/xml，而将
+                            //生成的 MIME 类型设置为 application/xml。将生成 UniformInterfaceException。
+                            request.addHeader("Accept", "application/json");
+                            //获取响应的结果
+                            HttpResponse response = httpclient.execute(request);
+                            //获取HttpEntity
+                            HttpEntity entity = response.getEntity();
+                            if(response.getStatusLine().getStatusCode()== HttpStatus.SC_OK) {
+                                //获取响应的结果信息
+                                result = EntityUtils.toString(entity);
+                            }
+                        } catch (ClientProtocolException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        return result;
+                    }
+
+                    public boolean putAPI() {
+                        boolean httpStatus = false;
+                        try {
+                            JSONObject jsonObj = new JSONObject();
+                            jsonObj.put("userid", "email");
+                            jsonObj.put("defaultlang", 1);
+                            jsonObj.put("password", "password1");
+                            jsonObj.put("nickname", "nickname1");
+                            jsonObj.put("voicelang", 1);
+                            jsonObj.put("email", "email1");
+                            //Create the POST object and add the parameters
+                            HttpPut httpPut = new HttpPut(API_PUT_URL);
+                            StringEntity entity = new StringEntity(jsonObj.toString(), HTTP.UTF_8);
+                            entity.setContentType("application/json");
+                            httpPut.setEntity(entity);
+                            HttpClient client = new DefaultHttpClient();
+                            HttpResponse response = client.execute(httpPut);
+                            httpStatus = response.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        return httpStatus;
+                    }
+
+                    public boolean postAPI() {
+                        boolean httpStatus = false;
+                        try {
+                            JSONObject jsonObj = new JSONObject();
+                            jsonObj.put("userid", "email");
+                            jsonObj.put("defaultlang", 0);
+                            jsonObj.put("password", "password");
+                            jsonObj.put("nickname", "nickname");
+                            jsonObj.put("voicelang", 0);
+                            jsonObj.put("email", "email");
+                            // Create the POST object and add the parameters
+                            HttpPost httpPost = new HttpPost(API_POST_URL);
+                            StringEntity entity = new StringEntity(jsonObj.toString(), HTTP.UTF_8);
+                            entity.setContentType("application/json");
+                            httpPost.setEntity(entity);
+                            HttpClient client = new DefaultHttpClient();
+                            HttpResponse response = client.execute(httpPost);
+                            httpStatus = response.getStatusLine().getStatusCode() == HttpStatus.SC_CREATED;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        return httpStatus;
+                    }
+                </pre>
+                <div>REPO：</div>
+                <pre>
+                    GET api/repo/appversion         -> 获取APP当前版本号
+                    GET api/repo/dataversion        -> 获取数据版本号
+                    GET api/repo/beaconuuid         -> 获取需要进行检测的beacon uuid,如estimote,sensoro等不同型号
+                    GET api/repo/catalog            -> 获取展览目录
+                    GET api/repo/excontent/{id}     -> 获取展览内容,{id}=extag
+                </pre>
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }
+    </section>
+</div>
+
+@section Scripts {
+    <link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+}

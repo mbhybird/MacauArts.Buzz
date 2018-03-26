@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lucky Buzz</string>
+    <string name="action_settings">Settings</string>
+    <string name="configOK">System Configuration OK</string>
+    <string name="title_activity_shake">ShakeActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="playCard52">开始游戏</string>
+    <string name="card5Open">Pick a Card</string>
+    <string name="card52Open">52 Strong</string>
+    <string name="cardSlotOpen">Slot Game</string>
+</resources>

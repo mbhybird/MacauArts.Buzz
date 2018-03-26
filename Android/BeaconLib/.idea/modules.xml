@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BeaconLib.iml" filepath="$PROJECT_DIR$/BeaconLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jackson-all-1.7.6/jackson-all-1.7.6.iml" filepath="$PROJECT_DIR$/jackson-all-1.7.6/jackson-all-1.7.6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/json-lib-2.4-jdk15/json-lib-2.4-jdk15.iml" filepath="$PROJECT_DIR$/json-lib-2.4-jdk15/json-lib-2.4-jdk15.iml" />
+    </modules>
+  </component>
+</project>
+

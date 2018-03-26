@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BeaconLib</string>
+    <string name="json_data">Source Json Data Here...</string>
+    <string name="action_settings">Settings</string>
+    <string name="getBeaconInfo">getBeaconInfo(01 2397,1)</string>
+    <string name="getSysparams">getSysparams(02)</string>
+    <string name="getUserInfo">getUserInfo(03,nickchung,123456)</string>
+    <string name="addSyslog">addSyslog(04 u001,b001,2015-02-25 11:34:50,2015-02-25 11:50:34,5000)</string>
+    <string name="addKey">addKey(05 2015-02-25 11:37:39,1)</string>
+    <string name="configOK">System Configuration OK</string>
+    <string name="open">Open</string>
+    <string name="lock">Lock</string>
+
+</resources>
